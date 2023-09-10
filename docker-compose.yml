@@ -2,23 +2,23 @@ version: "3.7"
 
 services:
   item-app:
-    image: ghcr.io/andyemwe2/item-app:v1
+    image: ghcr.io/andyemwe2/item-app:v1  # Menentukan gambar Docker yang akan digunakan untuk layanan 'item-app'.
     ports:
-      - "80:8080"
+      - "80:8080"  # Memetakan port 80 pada host ke port 8080 pada kontainer Docker.
     depends_on:
-      - item-db
-    restart: on-failure
+      - item-db  # Menentukan bahwa layanan 'item-app' bergantung pada layanan 'item-db'.
+    restart: on-failure  # Menentukan bahwa layanan 'item-app' akan dijalankan ulang jika terjadi kegagalan.
 
   item-db:
-    image: mongo:3
+    image: mongo:3  # Menentukan gambar Docker yang akan digunakan untuk layanan 'item-db'.
     ports:
-      - "27017:27017"
+      - "27017:27017"  # Memetakan port 27017 pada host ke port 27017 pada kontainer Docker.
     volumes:
-      - "app-db:/data/db"
+      - "app-db:/data/db"  # Menghubungkan volume 'app-db' pada host ke direktori '/data/db' di dalam kontainer Docker.
 
 volumes:
-  app-db:
+  app-db:  # Mendefinisikan volume Docker dengan nama 'app-db'.
 
 networks:
   net-item:
-    driver: bridge
+    driver: bridge  # Menentukan bahwa jaringan 'net-item' akan menggunakan driver jaringan 'bridge'.
